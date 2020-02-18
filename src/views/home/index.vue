@@ -16,7 +16,7 @@ export default {
     <div class="d-flex justify-center">
       <v-card class="text-center px-5 py-2" width="500">
         <p class="headline">Contractor TimeTracker</p>
-        <p>Track your tasks, time, and generate reports...</p>
+        <p>Track your tasks, time, and generate reports</p>
       </v-card>
     </div>
   </layout>
