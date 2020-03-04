@@ -63,15 +63,17 @@ export default {
   <div class="text-center">
     <v-dialog v-model="dialog" width="600">
       <template v-slot:activator="{ on }">
-        <v-btn small color="#80CBC4" v-on="on"
-          ><v-icon>mdi-plus</v-icon> &nbsp;New Client</v-btn
-        >
+        <v-btn small color="#80CBC4" v-on="on">
+          <v-icon>mdi-plus</v-icon>&nbsp;New Client
+        </v-btn>
       </template>
 
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>
-          <div class="flex flex-row">Category</div>
-          <v-btn text @click="close"><v-icon>mdi-window-close</v-icon> </v-btn>
+          <div class="flex flex-row">Client</div>
+          <v-btn text @click="close">
+            <v-icon>mdi-window-close</v-icon>
+          </v-btn>
         </v-card-title>
 
         <v-card-text>
@@ -82,12 +84,8 @@ export default {
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn v-if="selectedCategory" color="" text @click="updateCategory">
-            Update
-          </v-btn>
-          <v-btn v-else color="" text @click="addCategory">
-            Add
-          </v-btn>
+          <v-btn v-if="selectedCategory" color text @click="updateCategory">Update</v-btn>
+          <v-btn v-else color text @click="addCategory">Add</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

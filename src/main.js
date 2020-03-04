@@ -6,9 +6,6 @@ import router from "./router";
 import firebase from "firebase";
 import vuetify from "@/plugins/vuetify";
 Vue.config.productionTip = false;
-import config from "../config";
-
-console.log(config);
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_API_KEY,

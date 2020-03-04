@@ -93,27 +93,12 @@ export default {
   <div class="container">
     <div class="center aligned row">
       <div class="column">
-        <p>
-          Elapsed Time: {{ hours }} : {{ minutes | zeroPad }} :
-          {{ seconds | zeroPad }} : {{ milliSeconds | zeroPad(3) }}
-        </p>
-        <v-btn class="" @click="startTimer" :disabled="isRunning">
-          START
-        </v-btn>
-        <!-- <v-btn class="" @click="pushTime" :disabled="!isRunning">
-          LAP
-        </v-btn> -->
-        <v-btn class="" @click="stopTimer(false)" :disabled="!isRunning">
-          STOP
-        </v-btn>
-        <v-btn class="" @click="clearAll">CLEAR</v-btn>
-        <ul class="ui bulleted list" v-if="times.length">
-          <li class="item" v-for="item in times">
-            {{ item.hours }} : {{ item.minutes | zeroPad }} :
-            {{ item.seconds | zeroPad }} :
-            {{ item.milliSeconds | zeroPad(3) }}
-          </li>
-        </ul>
+        <p
+          class="display-2"
+        >Elapsed Time: {{ hours }}:{{ minutes | zeroPad }}:{{ seconds | zeroPad }}:{{ milliSeconds | zeroPad(3) }}</p>
+        <v-btn class @click="startTimer" :disabled="isRunning">START</v-btn>
+        <v-btn class @click="stopTimer(false)" :disabled="!isRunning">STOP</v-btn>
+        <v-btn class @click="clearAll">CLEAR</v-btn>
       </div>
     </div>
   </div>

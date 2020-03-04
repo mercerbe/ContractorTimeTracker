@@ -1,7 +1,8 @@
 <script>
 import layout from "@/layouts/main.vue";
+import report from "@/layouts/report.vue";
 export default {
-  components: { layout },
+  components: { layout, report },
   data() {
     return {
       tab: null,
@@ -17,14 +18,12 @@ export default {
   <layout>
     <div>
       <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
-        <v-tab v-for="tab in tabs" :key="tab">
-          {{ tab }}
-        </v-tab>
+        <v-tab v-for="tab in tabs" :key="tab">{{ tab }}</v-tab>
       </v-tabs>
       <v-tabs-items v-model="tab">
         <v-tab-item v-for="tab in tabs" :key="tab">
           <v-card color="basil" flat>
-            <v-card-text>{{ text }}</v-card-text>
+            <report />
           </v-card>
         </v-tab-item>
       </v-tabs-items>

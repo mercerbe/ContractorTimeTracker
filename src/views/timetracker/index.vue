@@ -6,6 +6,7 @@ import activity from "@/views/timetracker/components/activity-modal";
 import stopwatch from "@/views/timetracker/components/timetracker-stopwatch";
 import { convertTimestamp } from "@/views/timetracker/utils/timestamp-converter";
 import { msToHMS } from "@/views/timetracker/utils/timestamp-converter";
+import { ProcessData } from "@/utils/data-process";
 export default {
   components: { layout, categories, activity, stopwatch },
   data() {
@@ -24,13 +25,14 @@ export default {
       },
       selectedActivity: null,
       headers: [
-        { text: "Category", value: "category", class: "" },
-        { text: "Notes", value: "description", class: "" },
-        { text: "Duration", value: "duration", class: "duration" },
+        { text: "Start", value: "starttime", class: "timestamp" },
         { text: "End", value: "endtime", class: "timestamp" },
-        { text: "Id", value: "id", class: "hidden" },
-        { text: "Start", value: "starttime", class: "timestamp" }
+        { text: "Duration", value: "duration", class: "duration" },
+        { text: "Client", value: "category", class: "" },
+        { text: "Notes", value: "description", class: "" },
+        { text: "", value: "id", class: "hidden" }
       ],
+      tableData: [],
       search: null,
       // timer
       started: false,
@@ -59,6 +61,7 @@ export default {
           activity.id = doc.id;
           this.activities.push(activity);
         });
+        this.tableData = ProcessData(this.activities, this.headers);
       });
     },
     async getCategories() {
@@ -119,6 +122,7 @@ export default {
       <div class="flex-grow-1">
         <!-- stopwatch component -->
         <stopwatch @timer_stopped="addNewActivity" />
+        <!-- activity modal -->
         <activity
           :selected-activity="selectedActivity"
           :categories="categories"
@@ -135,27 +139,14 @@ export default {
             hide-details
           ></v-text-field>
 
-          <v-data-table :headers="headers" :items="activities" :search="search">
-            <template v-slot:headers="props">
-              <tr>
-                <th v-for="(header, idx) in props.headers" :key="idx">
-                  <template v-if="header.class !== 'hidden'">
-                    {{ header }}
-                  </template>
-                </th>
-              </tr>
-            </template>
+          <v-data-table :headers="headers.slice(0,-1)" :items="tableData" :search="search">
             <template v-slot:item="props">
               <tr style="cursor: pointer;" @click="openActivity(props.item)">
                 <td v-for="(item, idx, i) in props.item" :key="idx">
-                  <template v-if="headers[i].class === 'timestamp'">
-                    {{ convertTS(item.seconds) }}
-                  </template>
-                  <template v-else-if="headers[i].class === 'duration'">
-                    {{ convertMS(item) }}
-                  </template>
-                  <template v-else-if="headers[i].class !== 'hidden'">
-                    {{ item }}
+                  <template v-if="headers[i]">
+                    <template v-if="headers[i].class === 'timestamp'">{{ convertTS(item.seconds) }}</template>
+                    <template v-else-if="headers[i].class === 'duration'">{{ convertMS(item) }}</template>
+                    <template v-else-if="headers[i].class !== 'hidden'">{{ item }}</template>
                   </template>
                 </td>
               </tr>
@@ -163,23 +154,17 @@ export default {
           </v-data-table>
         </div>
       </div>
-      <div>
-        <categories
-          :selected-category="selectedCategory"
-          @close="selectedCategory = null"
-        />
-        <span class="title">Clients:</span>
-        <v-list>
-          <v-list-item-group>
-            <v-list-item
-              v-for="(c, idx) in categories"
-              :key="c.id"
-              @click="openCategory(c)"
-            >
-              {{ c.name }}
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
+      <div class="ml-3">
+        <v-card outlined class="px-3 py-3">
+          <!-- categories/clients modal -->
+          <categories :selected-category="selectedCategory" @close="selectedCategory = null" />
+          <p class="title pt-1">Clients:</p>
+          <v-list>
+            <v-list-item-group>
+              <v-list-item v-for="c in categories" :key="c.id" @click="openCategory(c)">{{ c.name }}</v-list-item>
+            </v-list-item-group>
+          </v-list>
+        </v-card>
       </div>
     </div>
   </layout>
