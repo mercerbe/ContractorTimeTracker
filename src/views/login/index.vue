@@ -35,8 +35,12 @@ export default {
 <template>
   <layout>
     <div class="d-flex justify-center">
-      <v-card width="400" class="items-center py-2 mt-10">
-        <p class="text-center">Login</p>
+      <v-card width="500" class="items-center py-2 mt-10">
+        <p class="text-center display-3 font-weight-light">
+          Login
+          <br />
+          <img src="../../assets/login.svg" alt />
+        </p>
         <section slot="default" id="firebaseui-auth-container"></section>
       </v-card>
     </div>
