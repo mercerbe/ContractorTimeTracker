@@ -41,6 +41,7 @@ export default {
           completed: false
         });
       this.todo.title = "";
+      this.$emit("status_updated");
     },
     updateTodoItem(docId, e) {
       console.log(e);
@@ -54,6 +55,7 @@ export default {
         .update({
           completed: isChecked
         });
+      this.$emit("status_updated");
     },
     deleteToDo(docId) {
       firebase
@@ -63,23 +65,19 @@ export default {
         .collection("todos")
         .doc(docId)
         .delete();
+      this.$emit("status_updated");
     }
   }
 };
 </script>
 
 <template>
-  <v-card class=" py-5">
+  <v-card class="py-5">
     <div class="px-5">
       <p class="title">Your Tasks</p>
       <div class="d-flex align-center">
         <div class="flex-grow-1">
-          <v-text-field
-            id="new_todo"
-            label=""
-            class="validate"
-            v-model="todo.title"
-          />
+          <v-text-field id="new_todo" label class="validate" v-model="todo.title" />
         </div>
         <div class="flex-shrink-1 pl-2">
           <v-btn color="teal" dark @click="addTodo">Add</v-btn>
