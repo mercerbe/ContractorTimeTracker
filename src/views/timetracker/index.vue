@@ -1,6 +1,7 @@
 <script>
 import firebase from "firebase";
 import layout from "@/layouts/main.vue";
+import pageHeader from "@/components/PageHeader";
 import categories from "@/views/timetracker/components/categories-modal.vue";
 import activity from "@/views/timetracker/components/activity-modal";
 import stopwatch from "@/views/timetracker/components/timetracker-stopwatch";
@@ -8,7 +9,7 @@ import { convertTimestamp } from "@/views/timetracker/utils/timestamp-converter"
 import { msToHMS } from "@/views/timetracker/utils/timestamp-converter";
 import { ProcessData } from "@/utils/data-process";
 export default {
-  components: { layout, categories, activity, stopwatch },
+  components: { layout, pageHeader, categories, activity, stopwatch },
   data() {
     return {
       loading: false,
@@ -81,7 +82,6 @@ export default {
     },
     // add based on stopwatch
     addNewActivity(start, end, diff) {
-      console.log(start, end, diff);
       this.selectedActivity = {
         starttime: start,
         endtime: end,
@@ -118,6 +118,7 @@ export default {
 
 <template>
   <layout>
+    <pageHeader title="Time Tracker" svg="time" />
     <div class="d-flex justify-space-between">
       <div class="flex-grow-1">
         <!-- stopwatch component -->

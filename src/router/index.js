@@ -33,9 +33,9 @@ let router = new Router({
       }
     },
     {
-      path: "/profile",
-      name: "profile",
-      component: () => lazyLoadView(import("@/views/profile")),
+      path: "/expenses",
+      name: "expenses",
+      component: () => lazyLoadView(import("@/views/expenses")),
       meta: {
         auth: true
       }

@@ -16,7 +16,8 @@ export default {
 
 <template>
   <layout>
-    <div>
+    Coming Soon
+    <!-- <div>
       <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
         <v-tab v-for="tab in tabs" :key="tab">{{ tab }}</v-tab>
       </v-tabs>
@@ -27,6 +28,6 @@ export default {
           </v-card>
         </v-tab-item>
       </v-tabs-items>
-    </div>
+    </div>-->
   </layout>
 </template>

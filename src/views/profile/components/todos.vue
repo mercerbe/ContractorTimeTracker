@@ -44,7 +44,6 @@ export default {
       this.$emit("status_updated");
     },
     updateTodoItem(docId, e) {
-      console.log(e);
       var isChecked = e;
       firebase
         .firestore()

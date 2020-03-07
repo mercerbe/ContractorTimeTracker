@@ -25,5 +25,7 @@ export const msToHMS = function(ms) {
   var minutes = parseInt(seconds / 60); // 60 seconds in 1 minute
   // 4- Keep only seconds not extracted to minutes:
   seconds = seconds % 60;
-  return `${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+  return `${hours.toFixed(0)} h, ${minutes.toFixed(0)} min, ${seconds.toFixed(
+    0
+  )} sec`;
 };

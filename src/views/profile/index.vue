@@ -6,12 +6,17 @@ import sparklines from "@/views/profile/components/profile-sparklines.vue";
 import snapshot from "@/views/profile/components/profile-snapshot.vue";
 import firebase from "firebase";
 
+// dates to query
 let d = new Date();
-let start = d.getDate() - d.getDay();
-let end = start + 6;
-const weekStart = new Date(d.setDate(start));
-const weekEnd = new Date(d.setDate(end));
-console.log(weekStart, weekEnd);
+// week
+let startWeek = d.getDate() - d.getDay();
+let endWeek = startWeek + 6;
+const weekStart = new Date(d.setDate(startWeek));
+const weekEnd = new Date(d.setDate(endWeek));
+// month
+const monthStart = new Date(d.getFullYear(), d.getMonth(), 1);
+const monthEnd = new Date(d.getFullYear(), d.getMonth() + 1, 0);
+console.log(monthStart, monthEnd);
 
 export default {
   data() {
@@ -22,8 +27,7 @@ export default {
           collection: "activities",
           query: ["starttime", ">=", weekStart],
           query2: ["starttime", "<=", weekEnd],
-          subtitle: "Logged this week",
-          class: "sum"
+          subtitle: "Logged this week"
         },
         {
           collection: "todos",
@@ -32,6 +36,20 @@ export default {
         },
         { collection: "categories", query: null, subtitle: "Clients" },
         { collection: "activities", query: null, subtitle: "Activities logged" }
+      ],
+      sparklines: [
+        {
+          collection: "activities",
+          query: [],
+          query2: [],
+          name: "Activity this month"
+        },
+        {
+          collection: "tasks",
+          query: [],
+          query2: [],
+          name: "Tasks this month"
+        }
       ]
     };
   },
@@ -66,27 +84,42 @@ export default {
       </div>
     </div>
 
-    <!-- snapshot data -->
-    <div class="d-flex flex-row justify-space-between py-2">
-      <snapshot
-        v-for="(i, idx) in snapshots"
-        :ref="`snapshot${i.collection}`"
-        :key="idx"
-        :collection="i.collection"
-        :query="i.query"
-        :query-compound="i.query2"
-        :subtitle="i.subtitle"
-        class="flex-grow-1 mx-1"
-      />
-    </div>
+    <v-container>
+      <!-- snapshot data -->
+      <v-row>
+        <v-col v-for="(i,idx) in snapshots" :key="idx" :md="3" :sm="12" :xs="12">
+          <snapshot
+            :ref="`snapshot${i.collection}`"
+            :key="idx"
+            :collection="i.collection"
+            :query="i.query"
+            :query-compound="i.query2"
+            :subtitle="i.subtitle"
+          />
+        </v-col>
+      </v-row>
 
-    <!-- sparkline charts -->
-    <sparklines :user="user" />
-
-    <!-- profile data and todo list -->
-    <div class="d-flex flex-row justify-space-between py-5">
-      <information class="flex-shrink-1 mx-1" v-if="user" :user="user" />
-      <todos class="flex-grow-1 mx-1" @status_updated="$refs.snapshottodos[0].runQuery()" />
-    </div>
+      <!-- sparkline charts -->
+      <v-row>
+        <v-col v-for="(sparkline, idx) in sparklines" :key="idx" :md="6" :sm="12" :xs="12">
+          <sparklines
+            :user="user"
+            :name="sparkline.name"
+            :collection="sparkline.collection"
+            :query="sparkline.query"
+            :query-compound="sparkline.query2"
+          />
+        </v-col>
+      </v-row>
+      <!-- profile data and todo list -->
+      <v-row>
+        <v-col :md="6" :sm="12">
+          <information v-if="user" :user="user" />
+        </v-col>
+        <v-col :md="6" :sm="12">
+          <todos @status_updated="$refs.snapshottodos[0].runQuery()" />
+        </v-col>
+      </v-row>
+    </v-container>
   </layout>
 </template>

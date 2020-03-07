@@ -15,7 +15,8 @@ export default {
       items: [
         { title: "Profile", icon: "mdi-account", route: "/profile" },
         { title: "TimeTracker", icon: "mdi-timetable", route: "/timetracker" },
-        { title: "Reports", icon: "mdi-file-chart", route: "/reports" }
+        { title: "Reports", icon: "mdi-file-chart", route: "/reports" },
+        { title: "Expenses", icon: "mdi-cash-multiple", route: "/expenses" }
       ]
     };
   }
@@ -40,11 +41,7 @@ export default {
     <v-divider></v-divider>
 
     <v-list dense>
-      <v-list-item
-        v-for="item in items"
-        :key="item.title"
-        @click="$router.push(item.route)"
-      >
+      <v-list-item v-for="item in items" :key="item.title" @click="$router.push(item.route)">
         <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-icon>

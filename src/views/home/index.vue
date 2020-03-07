@@ -34,7 +34,7 @@ export default {
     <div class="d-flex justify-center">
       <v-card class="text-center px-5 py-2 mt-5" width="600">
         <p class="display-3">Contractor TimeTracker</p>
-        <p class="subtitle-1">Track your tasks, time, and generate reports</p>
+        <p class="subtitle-1">Track your tasks, time, expenses and generate reports</p>
       </v-card>
     </div>
     <!-- body -->
