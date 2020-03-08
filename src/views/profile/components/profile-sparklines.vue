@@ -25,8 +25,7 @@ export default {
   data() {
     return {
       loading: false,
-      data: null,
-      value: [423, 446, 675, 510, 590, 610, 760]
+      data: []
     };
   },
   created() {
@@ -41,21 +40,19 @@ export default {
 </script>
 
 <template>
-  <v-card class="mx-1 text-center flex-grow-1" color="#80CBC4" dark max-width="600">
+  <v-card class="text-center flex-grow-1" color="#80CBC4" dark>
     <v-card-text>
       <v-sheet color="rgba(0, 0, 0, .12)">
         <v-sparkline
-          :value="value"
+          :value="data"
           color="rgba(255, 255, 255, .7)"
           height="100"
           padding="24"
           stroke-linecap="round"
           smooth
-        >
-          <template v-slot:label="item">{{ item.value }}</template>
-        </v-sparkline>
+        ></v-sparkline>
       </v-sheet>
-      <p>{{name}}</p>
+      <p class="subtitle">{{name}}</p>
     </v-card-text>
   </v-card>
 </template>

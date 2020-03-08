@@ -90,16 +90,12 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <div class="center aligned row">
-      <div class="column">
-        <p
-          class="display-2"
-        >Elapsed Time: {{ hours }}:{{ minutes | zeroPad }}:{{ seconds | zeroPad }}:{{ milliSeconds | zeroPad(3) }}</p>
-        <v-btn class @click="startTimer" :disabled="isRunning">START</v-btn>
-        <v-btn class @click="stopTimer(false)" :disabled="!isRunning">STOP</v-btn>
-        <v-btn class @click="clearAll">CLEAR</v-btn>
-      </div>
-    </div>
-  </div>
+  <v-container>
+    <p
+      class="headline"
+    >Elapsed Time: {{ hours }}:{{ minutes | zeroPad }}:{{ seconds | zeroPad }}:{{ milliSeconds | zeroPad(3) }}</p>
+    <v-btn dark color="green" class @click="startTimer" :disabled="isRunning">START</v-btn>
+    <v-btn dark color="red" class @click="stopTimer(false)" :disabled="!isRunning">STOP</v-btn>
+    <v-btn class @click="clearAll">CLEAR</v-btn>
+  </v-container>
 </template>

@@ -6,9 +6,7 @@ export default {
   data() {
     return {
       tab: null,
-      tabs: ["Time", "Notes", "Tasks"],
-      text:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      tabs: ["Activity", "Notes", "Expenses"]
     };
   }
 };
@@ -16,18 +14,22 @@ export default {
 
 <template>
   <layout>
-    Coming Soon
-    <!-- <div>
-      <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
+    <!-- page header -->
+    <v-col class="text-center">
+      <img src="../../assets/report.svg" alt />
+      <p class="display-1">Reports</p>
+    </v-col>
+    <div>
+      <v-tabs v-model="tab" background-color="transparent" color="teal" grow>
         <v-tab v-for="tab in tabs" :key="tab">{{ tab }}</v-tab>
       </v-tabs>
       <v-tabs-items v-model="tab">
         <v-tab-item v-for="tab in tabs" :key="tab">
-          <v-card color="basil" flat>
+          <v-card flat color="#fefefe">
             <report />
           </v-card>
         </v-tab-item>
       </v-tabs-items>
-    </div>-->
+    </div>
   </layout>
 </template>

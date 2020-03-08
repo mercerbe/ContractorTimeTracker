@@ -41,12 +41,12 @@ export default {
 
 <style>
 .content {
-  background: rgb(242, 245, 241);
+  background: rgb(255, 255, 255);
   background: linear-gradient(
     180deg,
-    rgba(242, 245, 241, 1) 0%,
-    rgba(229, 229, 232, 1) 65%,
-    rgba(209, 209, 209, 1) 100%
+    rgba(255, 255, 255, 1) 0%,
+    rgba(243, 243, 246, 1) 44%,
+    rgba(205, 205, 205, 1) 100%
   );
 }
 </style>

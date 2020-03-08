@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import { msToHMS } from "@/views/timetracker/utils/timestamp-converter";
 export default {
   methods: {
     async runQuery() {
@@ -30,13 +31,15 @@ export default {
             )
             .get()
             .then(snap => {
-              let total = 0; //in millseconds
               snap.docs.forEach(doc => {
                 let item = doc.data();
-                let duration = item.duration;
-                total = total + duration;
+                if (item.duration) {
+                  let duration = item.duration;
+                  this.data.push(duration);
+                } else {
+                  this.data.push(1);
+                }
               });
-              this.data = msToHMS(total);
             });
         }
       }

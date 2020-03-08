@@ -77,7 +77,7 @@ export default {
         </v-card-title>
 
         <v-card-text>
-          <v-text-field label="Category Name" v-model="category.name" />
+          <v-text-field label="Client Name" v-model="category.name" />
         </v-card-text>
 
         <v-divider></v-divider>

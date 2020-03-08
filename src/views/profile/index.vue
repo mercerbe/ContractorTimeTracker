@@ -40,16 +40,16 @@ export default {
       sparklines: [
         {
           collection: "activities",
-          query: [],
-          query2: [],
+          query: ["starttime", ">=", monthStart],
+          query2: ["starttime", "<=", monthEnd],
           name: "Activity this month"
-        },
-        {
-          collection: "tasks",
-          query: [],
-          query2: [],
-          name: "Tasks this month"
         }
+        // {
+        //   collection: "tasks",
+        //   query: ["created_at", ">=", monthStart],
+        //   query2: ["created_at", "<=", monthEnd],
+        //   name: "Tasks this month"
+        // }
       ]
     };
   },
@@ -80,7 +80,7 @@ export default {
           style="width:225px;height:225px;border-radius:50%;border:2px solid #333"
         />
 
-        <p class="headline">Welcome back, {{ user.displayName }}!</p>
+        <p class="display-1">Welcome back, {{ user.displayName }}!</p>
       </div>
     </div>
 
@@ -101,7 +101,7 @@ export default {
 
       <!-- sparkline charts -->
       <v-row>
-        <v-col v-for="(sparkline, idx) in sparklines" :key="idx" :md="6" :sm="12" :xs="12">
+        <v-col v-for="(sparkline, idx) in sparklines" :key="idx" :md="12" :sm="12" :xs="12">
           <sparklines
             :user="user"
             :name="sparkline.name"

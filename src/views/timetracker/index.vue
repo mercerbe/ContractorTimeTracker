@@ -1,7 +1,6 @@
 <script>
 import firebase from "firebase";
 import layout from "@/layouts/main.vue";
-import pageHeader from "@/components/PageHeader";
 import categories from "@/views/timetracker/components/categories-modal.vue";
 import activity from "@/views/timetracker/components/activity-modal";
 import stopwatch from "@/views/timetracker/components/timetracker-stopwatch";
@@ -9,7 +8,7 @@ import { convertTimestamp } from "@/views/timetracker/utils/timestamp-converter"
 import { msToHMS } from "@/views/timetracker/utils/timestamp-converter";
 import { ProcessData } from "@/utils/data-process";
 export default {
-  components: { layout, pageHeader, categories, activity, stopwatch },
+  components: { layout, categories, activity, stopwatch },
   data() {
     return {
       loading: false,
@@ -118,55 +117,75 @@ export default {
 
 <template>
   <layout>
-    <pageHeader title="Time Tracker" svg="time" />
-    <div class="d-flex justify-space-between">
-      <div class="flex-grow-1">
-        <!-- stopwatch component -->
-        <stopwatch @timer_stopped="addNewActivity" />
-        <!-- activity modal -->
-        <activity
-          :selected-activity="selectedActivity"
-          :categories="categories"
-          @close="selectedActivity = null"
-        />
-        <p class="title">Activity Log:</p>
-        <div class="px-2">
-          <v-text-field
-            v-model="search"
-            style="max-width: 275px;"
-            append-icon="mdi-magnify"
-            label="Search"
-            single-line
-            hide-details
-          ></v-text-field>
+    <!-- page header -->
+    <v-col class="text-center">
+      <img src="../../assets/time.svg" alt />
+      <p class="display-1">Time Tracker</p>
+    </v-col>
 
-          <v-data-table :headers="headers.slice(0,-1)" :items="tableData" :search="search">
-            <template v-slot:item="props">
-              <tr style="cursor: pointer;" @click="openActivity(props.item)">
-                <td v-for="(item, idx, i) in props.item" :key="idx">
-                  <template v-if="headers[i]">
-                    <template v-if="headers[i].class === 'timestamp'">{{ convertTS(item.seconds) }}</template>
-                    <template v-else-if="headers[i].class === 'duration'">{{ convertMS(item) }}</template>
-                    <template v-else-if="headers[i].class !== 'hidden'">{{ item }}</template>
-                  </template>
-                </td>
-              </tr>
-            </template>
-          </v-data-table>
-        </div>
-      </div>
-      <div class="ml-3">
-        <v-card outlined class="px-3 py-3">
-          <!-- categories/clients modal -->
-          <categories :selected-category="selectedCategory" @close="selectedCategory = null" />
-          <p class="title pt-1">Clients:</p>
-          <v-list>
-            <v-list-item-group>
-              <v-list-item v-for="c in categories" :key="c.id" @click="openCategory(c)">{{ c.name }}</v-list-item>
-            </v-list-item-group>
-          </v-list>
-        </v-card>
-      </div>
-    </div>
+    <!-- stopwatch component -->
+    <stopwatch @timer_stopped="addNewActivity" />
+
+    <!-- activity modal -->
+    <activity
+      :selected-activity="selectedActivity"
+      :categories="categories"
+      @close="selectedActivity = null"
+    />
+
+    <v-container>
+      <v-row>
+        <!-- table -->
+        <v-col :md="9" :sm="12">
+          <v-card>
+            <v-card-title class="title">Activity Log:</v-card-title>
+            <v-card-subtitle>
+              <v-text-field
+                v-model="search"
+                style="max-width: 275px;"
+                append-icon="mdi-magnify"
+                label="Search"
+                single-line
+                hide-details
+              ></v-text-field>
+            </v-card-subtitle>
+
+            <v-data-table :headers="headers.slice(0,-1)" :items="tableData" :search="search">
+              <template v-slot:item="props">
+                <tr style="cursor: pointer;" @click="openActivity(props.item)">
+                  <td v-for="(item, idx, i) in props.item" :key="idx">
+                    <template v-if="headers[i]">
+                      <template
+                        v-if="headers[i].class === 'timestamp'"
+                      >{{ convertTS(item.seconds) }}</template>
+                      <template v-else-if="headers[i].class === 'duration'">{{ convertMS(item) }}</template>
+                      <template v-else-if="headers[i].class !== 'hidden'">{{ item }}</template>
+                    </template>
+                  </td>
+                </tr>
+              </template>
+            </v-data-table>
+          </v-card>
+        </v-col>
+
+        <!-- clients/categories -->
+        <v-col :md="3" :sm="12">
+          <v-card outlined class="px-3 py-3">
+            <p class="title pt-1">Clients:</p>
+            <!-- categories/clients modal -->
+            <categories :selected-category="selectedCategory" @close="selectedCategory = null" />
+            <v-list>
+              <v-list-item-group>
+                <v-list-item
+                  v-for="c in categories"
+                  :key="c.id"
+                  @click="openCategory(c)"
+                >{{ c.name }}</v-list-item>
+              </v-list-item-group>
+            </v-list>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
   </layout>
 </template>
