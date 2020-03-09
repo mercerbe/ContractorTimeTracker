@@ -1,8 +1,14 @@
 <script>
 export default {
+  props: {
+    file: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
-      file: ""
+      json: null
     };
   },
   created() {
@@ -10,7 +16,7 @@ export default {
   },
   methods: {
     initFilters() {
-      let json = require(`../views/reports/config/${this.file}`);
+      this.json = require(`../config/${this.file}`);
     }
   }
 };

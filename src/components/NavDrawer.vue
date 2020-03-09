@@ -15,8 +15,8 @@ export default {
       items: [
         { title: "Profile", icon: "mdi-account", route: "/profile" },
         { title: "TimeTracker", icon: "mdi-timetable", route: "/timetracker" },
-        { title: "Reports", icon: "mdi-file-chart", route: "/reports" },
-        { title: "Expenses", icon: "mdi-cash-multiple", route: "/expenses" }
+        { title: "Expenses", icon: "mdi-cash-multiple", route: "/expenses" },
+        { title: "Reports", icon: "mdi-file-chart", route: "/reports" }
       ]
     };
   }

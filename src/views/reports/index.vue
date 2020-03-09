@@ -6,7 +6,7 @@ export default {
   data() {
     return {
       tab: null,
-      tabs: ["Activity", "Notes", "Expenses"]
+      tabs: ["Activity", "Expenses"]
     };
   }
 };
@@ -25,7 +25,7 @@ export default {
       </v-tabs>
       <v-tabs-items v-model="tab">
         <v-tab-item v-for="tab in tabs" :key="tab">
-          <v-card flat color="#fefefe">
+          <v-card flat color="#fafafa">
             <report />
           </v-card>
         </v-tab-item>

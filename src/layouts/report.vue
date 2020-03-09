@@ -1,8 +1,11 @@
 
 
 <script>
+import ReportTable from "@/views/reports/components/Table";
+import ReportFilters from "@/views/reports/components/Filters";
 export default {
-  name: "ReportLayout"
+  name: "ReportLayout",
+  components: { ReportTable, ReportFilters }
 };
 </script>
 

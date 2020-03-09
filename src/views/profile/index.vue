@@ -8,6 +8,7 @@ import firebase from "firebase";
 
 // dates to query
 let d = new Date();
+d.setHours(0, 0, 0, 0);
 // week
 let startWeek = d.getDate() - d.getDay();
 let endWeek = startWeek + 6;
@@ -16,7 +17,6 @@ const weekEnd = new Date(d.setDate(endWeek));
 // month
 const monthStart = new Date(d.getFullYear(), d.getMonth(), 1);
 const monthEnd = new Date(d.getFullYear(), d.getMonth() + 1, 0);
-console.log(monthStart, monthEnd);
 
 export default {
   data() {

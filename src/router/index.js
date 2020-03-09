@@ -25,17 +25,17 @@ let router = new Router({
       }
     },
     {
-      path: "/reports",
-      name: "reports",
-      component: () => lazyLoadView(import("@/views/reports")),
+      path: "/expenses",
+      name: "expenses",
+      component: () => lazyLoadView(import("@/views/expenses")),
       meta: {
         auth: true
       }
     },
     {
-      path: "/expenses",
-      name: "expenses",
-      component: () => lazyLoadView(import("@/views/expenses")),
+      path: "/reports",
+      name: "reports",
+      component: () => lazyLoadView(import("@/views/reports")),
       meta: {
         auth: true
       }
