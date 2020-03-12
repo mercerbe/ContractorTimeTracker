@@ -1,3 +1,22 @@
+import {
+  format,
+  addMinutes,
+  formatDistanceToNow,
+  formatDistance,
+  parse,
+  startOfMonth as startOfMonthFNS,
+  endOfMonth as endOfMonthFNS,
+  startOfISOWeek as startOfISOWeekFNS,
+  endOfISOWeek as endOfISOWeekFNS
+} from "date-fns";
+
+/**
+ * @desc returns formatted string from date/string
+ * @param 'date - String | Date'
+ * @param 'dateFormat - format that output string will be returned'
+ * @return string | void
+ */
+
 export const convertTimestamp = function(timestamp) {
   var d = new Date(timestamp * 1000);
   let timeStampCon =
@@ -28,4 +47,34 @@ export const msToHMS = function(ms) {
   return `${hours.toFixed(0)} h, ${minutes.toFixed(0)} min, ${seconds.toFixed(
     0
   )} sec`;
+};
+
+export const formatDate = (date, dateFormat) => {
+  if (date === null || date === undefined) {
+    // console.warn(
+    //   `formatDate function accepts string, empty string or date, you provided ${date}`,
+    // )
+    return "-";
+  }
+
+  let dateObject = date === "" ? new Date() : new Date(date);
+  return format(dateObject, dateFormat);
+};
+
+/**
+ * Takes a datetime string and converts it into a string with another format
+ *
+ * @param dateString - date string
+ * @param currentFormat - input datetime format
+ * @param finalFormat - output datetime format
+ * @returns string
+ */
+export const parseAndFormatDate = (dateString, currentFormat, finalFormat) => {
+  let dateObject = parse(dateString, currentFormat, new Date());
+
+  return format(dateObject, finalFormat);
+};
+
+export const parseDate = (dateString, format) => {
+  return parse(dateString, format, new Date());
 };

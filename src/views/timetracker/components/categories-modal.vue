@@ -10,7 +10,6 @@ export default {
   },
   watch: {
     selectedCategory(val) {
-      console.log(val);
       if (val) {
         this.category = val;
         this.dialog = true;

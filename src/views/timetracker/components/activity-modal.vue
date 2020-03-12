@@ -17,7 +17,6 @@ export default {
   },
   watch: {
     selectedActivity(val) {
-      console.log(val);
       if (val) {
         this.activity = val;
         this.dialog = true;

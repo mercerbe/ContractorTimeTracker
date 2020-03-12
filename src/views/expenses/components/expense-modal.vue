@@ -10,7 +10,6 @@ export default {
   },
   watch: {
     selectedExpense(val) {
-      console.log(val);
       if (val) {
         this.expense = val;
         this.dialog = true;

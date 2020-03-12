@@ -6,7 +6,10 @@ export default {
   data() {
     return {
       tab: null,
-      tabs: ["Activity", "Expenses"]
+      tabs: [
+        { title: "Activity", json: "activities" },
+        { title: "Expenses", json: "expenses" }
+      ]
     };
   }
 };
@@ -21,12 +24,13 @@ export default {
     </v-col>
     <div>
       <v-tabs v-model="tab" background-color="transparent" color="teal" grow>
-        <v-tab v-for="tab in tabs" :key="tab">{{ tab }}</v-tab>
+        <v-tab v-for="tab in tabs" :key="tab.title">{{ tab.title }}</v-tab>
       </v-tabs>
+      <v-divider></v-divider>
       <v-tabs-items v-model="tab">
-        <v-tab-item v-for="tab in tabs" :key="tab">
+        <v-tab-item v-for="tab in tabs" :key="tab.title">
           <v-card flat color="#fafafa">
-            <report />
+            <report file-path="@/views/reports/config" :title="tab.title" :json="tab.json" />
           </v-card>
         </v-tab-item>
       </v-tabs-items>

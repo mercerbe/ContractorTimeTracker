@@ -1,0 +1,51 @@
+{
+  "report_meta": {
+    "title": "test",
+    "auto_start": true,
+    "collection": "activities"
+  },
+  "report_headers": {
+    "headers": [
+      { "text": "Start Time", "value": "starttime" },
+      {
+        "text": "End Time",
+        "value": "endtime"
+      },
+      {
+        "text": "Duration",
+        "value": "duration"
+      },
+      {
+        "text": "Client",
+        "value": "category"
+      },
+      {
+        "text": "Notes",
+        "value": "description"
+      }
+    ]
+  },
+  "report_filters": {
+    "filters": [
+      {
+        "label": "Client",
+        "value": "",
+        "type": "select",
+        "placeholder": "All",
+        "data": "categories",
+        "param": "category",
+        "options": [],
+        "item_text": "name",
+        "item_value": "name"
+      },
+      {
+        "label": "Date Range",
+        "value": [30, 0],
+        "type": "daterange",
+        "param": "starttime"
+      },
+      { "label": "Search", "value": null, "type": "button" },
+      { "label": "Export", "value": null, "type": "export" }
+    ]
+  }
+}

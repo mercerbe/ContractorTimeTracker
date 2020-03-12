@@ -1,0 +1,36 @@
+{
+  "report_meta": {
+    "title": "Expenses",
+    "auto_start": true,
+    "collection": "expenses"
+  },
+  "report_headers": {
+    "headers": [
+      { "text": "Created At", "value": "created_at", "class": "timestamp" },
+      {
+        "text": "Name",
+        "value": "name"
+      },
+      {
+        "text": "Type",
+        "value": "type"
+      },
+      {
+        "text": "Amount",
+        "value": "amount",
+        "class": "dollar"
+      },
+      {
+        "text": "Description",
+        "value": "description"
+      }
+    ]
+  },
+  "report_filters": {
+    "filters": [
+      { "label": "test", "value": "test", "type": "select" },
+      { "label": "test date", "value": [7, 0], "type": "daterange" },
+      { "label": "Search", "value": null, "type": "button" }
+    ]
+  }
+}
