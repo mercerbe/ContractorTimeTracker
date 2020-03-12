@@ -1,6 +1,6 @@
 {
   "report_meta": {
-    "title": "test",
+    "title": "Activities",
     "auto_start": true,
     "collection": "activities"
   },
@@ -47,5 +47,8 @@
       { "label": "Search", "value": null, "type": "button" },
       { "label": "Export", "value": null, "type": "export" }
     ]
+  },
+  "export_fields": {
+    "Start Time": "starttime"
   }
 }

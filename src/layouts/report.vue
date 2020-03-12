@@ -41,6 +41,10 @@ export default {
       >
         <ReportFilters
           :report-filters="reportFilters"
+          :report-headers="reportHeaders"
+          :report-data="reportData"
+          :report-meta="reportMeta"
+          :export-fields="exportFields"
           @filter_changed="updateDateFilter"
           @search="runQuery"
           @export="exportQuery"

@@ -13,7 +13,9 @@ export default {
       reportLoading: false,
       reportData: [],
       reportHeaders: [],
-      reportFilters: []
+      reportFilters: [],
+      reportMeta: {},
+      exportFields: {}
     };
   },
   methods: {
@@ -23,6 +25,7 @@ export default {
       this.reportMeta = this.reportJson.report_meta;
       this.reportHeaders = this.reportJson.report_headers.headers;
       this.reportFilters = this.reportJson.report_filters.filters;
+      this.exportFields = this.reportJson.export_fields;
       this.loadFilters();
     },
     async loadFilters() {
@@ -86,10 +89,11 @@ export default {
             break;
           case "daterange":
             let sortedDates = filter.value.sort((a, b) => {
-              return b - a;
+              return a - b;
             });
+            console.log("sorted", sortedDates);
             queries.push([filter.param, ">=", sortedDates[0]]);
-            queries.push([filter.param, "<=", sortedDates[0]]);
+            queries.push([filter.param, "<=", sortedDates[1]]);
             break;
           default:
             break;

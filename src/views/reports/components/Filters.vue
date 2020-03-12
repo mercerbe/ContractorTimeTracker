@@ -1,9 +1,28 @@
 <script>
+import JsonExcel from "vue-json-excel";
 export default {
+  components: { JsonExcel },
   props: {
     reportFilters: {
       type: Array,
       required: true
+    },
+    reportHeaders: {
+      type: Array,
+      required: true
+    },
+    reportData: {
+      type: Array,
+      required: true
+    },
+    reportMeta: {
+      type: Object,
+      required: true
+    },
+    exportFields: {
+      type: Object,
+      required: false,
+      default: () => ({})
     }
   },
   data() {
@@ -55,13 +74,16 @@ export default {
       <!-- query -->
       <v-btn v-if="filter.type === 'button'" :key="idx" dark @click="$emit('search')">Search</v-btn>
       <!-- export -->
-      <v-btn
-        v-if="filter.type === 'export'"
-        color="green"
-        dark
-        :key="idx"
-        @click="$emit('export')"
-      >Export</v-btn>
+      <v-btn v-if="filter.type === 'export'" color="green" dark :key="idx" @click="$emit('export')">
+        <JsonExcel
+          v-if="filter.type === 'export'"
+          :key="idx"
+          :data="reportData"
+          :fields="exportFields"
+          :worksheet="`CTC ${reportMeta.title}`"
+          :name="`${reportMeta.title}.xlsx`"
+        >Export</JsonExcel>
+      </v-btn>
     </template>
   </div>
 </template>

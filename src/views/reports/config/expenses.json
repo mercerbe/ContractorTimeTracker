@@ -28,9 +28,14 @@
   },
   "report_filters": {
     "filters": [
-      { "label": "test", "value": "test", "type": "select" },
-      { "label": "test date", "value": [7, 0], "type": "daterange" },
-      { "label": "Search", "value": null, "type": "button" }
+      {
+        "label": "Created At",
+        "value": [14, 0],
+        "type": "daterange",
+        "param": "created_at"
+      },
+      { "label": "Search", "value": null, "type": "button" },
+      { "label": "Export", "value": null, "type": "export" }
     ]
   }
 }
