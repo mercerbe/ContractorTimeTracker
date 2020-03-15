@@ -48,23 +48,6 @@ export default {
               });
             });
             break;
-          case "daterange":
-            let d1 = new Date(new Date().setHours(0, 0, 0, 0));
-            let d2 = new Date(new Date().setHours(0, 0, 0, 0));
-
-            let startDate = new Date(
-              d1.setDate(d1.getDate() - filter.value[0])
-            );
-            let endDate = new Date(d2.setDate(d2.getDate() - filter.value[1]));
-            filter.value = [startDate, endDate];
-            filter.display = `${formatDate(
-              startDate,
-              "LL/dd/yyyy"
-            )} - ${formatDate(endDate, "LL/dd/yyyy")}`;
-            filter.vuetify = [
-              formatDate(startDate, "yyyy-LL-dd"),
-              formatDate(endDate, "yyyy-LL-dd")
-            ];
           default:
             break;
         }
@@ -74,6 +57,7 @@ export default {
     },
     updateDateFilter(filter) {
       // update filter value and
+      console.log(filter);
     },
     async runQuery() {
       this.reportLoading = true;
@@ -91,7 +75,7 @@ export default {
             let sortedDates = filter.value.sort((a, b) => {
               return a - b;
             });
-            console.log("sorted", sortedDates);
+
             queries.push([filter.param, ">=", sortedDates[0]]);
             queries.push([filter.param, "<=", sortedDates[1]]);
             break;
@@ -107,12 +91,13 @@ export default {
         .collection(this.reportMeta.collection);
 
       // build and execute query
-      console.log(...queries);
+      console.log(queries);
       queries.map((q, idx) => {
         query = ref.where(...q);
       });
       query.get().then(snap => {
         this.reportData = snap.docs.map(doc => doc.data());
+        console.log(this.reportData);
       });
     },
     exportQuery() {}

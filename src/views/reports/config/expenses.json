@@ -30,12 +30,20 @@
     "filters": [
       {
         "label": "Created At",
-        "value": [14, 0],
+        "value": "",
+        "default": [14, 0],
         "type": "daterange",
         "param": "created_at"
       },
       { "label": "Search", "value": null, "type": "button" },
       { "label": "Export", "value": null, "type": "export" }
     ]
+  },
+  "export_fields": {
+    "Created At": "created_at",
+    "Name": "name",
+    "Type": "type",
+    "Amount": "amount",
+    "Description": "description"
   }
 }

@@ -1,7 +1,8 @@
 <script>
+import DatePicker from "@/components/DatePicker";
 import JsonExcel from "vue-json-excel";
 export default {
-  components: { JsonExcel },
+  components: { DatePicker, JsonExcel },
   props: {
     reportFilters: {
       type: Array,
@@ -24,11 +25,6 @@ export default {
       required: false,
       default: () => ({})
     }
-  },
-  data() {
-    return {
-      modal: false
-    };
   }
 };
 </script>
@@ -47,30 +43,12 @@ export default {
         :key="idx"
       ></v-select>
       <!-- date -->
-      <v-dialog
+      <DatePicker
         v-if="filter.type === 'daterange'"
-        ref="dialog"
-        v-model="modal"
-        :return-value.sync="filter.vuetify"
-        persistent
-        width="290px"
+        :filter="filter"
         :key="idx"
-      >
-        <template v-slot:activator="{ on }">
-          <v-text-field
-            v-model="filter.display"
-            :label="filter.label"
-            color="teal"
-            prepend-inner-icon="mdi-calendar"
-            readonly
-            v-on="on"
-          ></v-text-field>
-        </template>
-        <v-date-picker v-model="filter.vuetify" range scrollable color="teal">
-          <v-spacer></v-spacer>
-          <v-btn text color="teal" @click="$emit('filter_changed', filter), modal = !modal">OK</v-btn>
-        </v-date-picker>
-      </v-dialog>
+        @filter_changed="$emit('filter_changed')"
+      />
       <!-- query -->
       <v-btn v-if="filter.type === 'button'" :key="idx" dark @click="$emit('search')">Search</v-btn>
       <!-- export -->

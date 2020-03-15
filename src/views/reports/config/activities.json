@@ -6,14 +6,16 @@
   },
   "report_headers": {
     "headers": [
-      { "text": "Start Time", "value": "starttime" },
+      { "text": "Start Time", "value": "starttime", "class": "timestamp" },
       {
         "text": "End Time",
-        "value": "endtime"
+        "value": "endtime",
+        "class": "timestamp"
       },
       {
         "text": "Duration",
-        "value": "duration"
+        "value": "duration",
+        "class": "duration"
       },
       {
         "text": "Client",
@@ -40,7 +42,8 @@
       },
       {
         "label": "Date Range",
-        "value": [30, 0],
+        "value": "",
+        "default": [30, 0],
         "type": "daterange",
         "param": "starttime"
       },
@@ -49,6 +52,10 @@
     ]
   },
   "export_fields": {
-    "Start Time": "starttime"
+    "Start Time": "starttime",
+    "End Time": "endtime",
+    "Duration": "duration",
+    "Client": "category",
+    "Notes": "description"
   }
 }
