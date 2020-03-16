@@ -1,8 +1,5 @@
 import {
   format,
-  addMinutes,
-  formatDistanceToNow,
-  formatDistance,
   parse,
   startOfMonth as startOfMonthFNS,
   endOfMonth as endOfMonthFNS,
@@ -19,6 +16,14 @@ import {
 
 export const convertTimestamp = function(timestamp) {
   var d = new Date(timestamp * 1000);
+  let hours = d.getHours();
+  let minutes = d.getMinutes();
+  let seconds = d.getSeconds();
+  let ampm = hours >= 12 ? " pm" : " am";
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  seconds = seconds < 10 ? "0" + seconds : seconds;
   let timeStampCon =
     d.getMonth() +
     1 +
@@ -27,9 +32,12 @@ export const convertTimestamp = function(timestamp) {
     "/" +
     d.getFullYear() +
     " " +
-    d.getHours() +
+    hours +
     ":" +
-    d.getMinutes();
+    minutes +
+    ":" +
+    seconds +
+    ampm;
 
   return timeStampCon;
 };

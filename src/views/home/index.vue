@@ -18,7 +18,7 @@ export default {
       message: "",
       messageRules: [
         v => !!v || "Message is required",
-        v => v.length > 500 || "Message must be less than 500 characters"
+        v => v.length < 500 || "Message must be less than 500 characters"
       ]
     };
   },
@@ -170,7 +170,7 @@ export default {
         </p>
         <v-row class="align-items-center text-center" style="max-height: 500px;">
           <v-col cols="12" sm="10">
-            <img src="../../assets/metrics.svg" alt />
+            <img src="../../assets/metrics.svg" alt style="max-height: 500px;margin-bottom: 10px;" />
           </v-col>
         </v-row>
       </div>
@@ -180,7 +180,12 @@ export default {
         class="title px-5 py-2"
         style="background-color: #363636; border-top-right-radius: 10px;border-top-left-radius: 10px;"
       >Questions or Concerns? Shoot us a message:</p>
-      <v-form v-model="valid" class="px-12 pb-5">
+      <v-form
+        v-model="valid"
+        class="px-12 pb-5"
+        action="https://formspree.io/xdodgprw"
+        method="POST"
+      >
         <v-row>
           <v-col cols="12" md="6">
             <v-text-field
@@ -189,12 +194,20 @@ export default {
               :rules="nameRules"
               :counter="10"
               label="Name"
+              name="name"
               required
             ></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6">
-            <v-text-field dark v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
+            <v-text-field
+              dark
+              v-model="email"
+              :rules="emailRules"
+              label="E-mail"
+              name="email"
+              required
+            ></v-text-field>
           </v-col>
         </v-row>
         <v-textarea
@@ -203,11 +216,12 @@ export default {
           :rules="messageRules"
           :counter="500"
           label="Message"
+          name="message"
           required
         ></v-textarea>
 
         <v-row class="justify-end pt-3">
-          <v-btn dark :disabled="!valid">Submit</v-btn>
+          <v-btn dark :disabled="!valid" type="submit">Submit</v-btn>
         </v-row>
       </v-form>
     </div>
