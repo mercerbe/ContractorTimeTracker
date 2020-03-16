@@ -55,10 +55,6 @@ export default {
       this.loading = false;
       if (this.reportMeta.auto_start) this.runQuery();
     },
-    updateDateFilter(filter) {
-      // update filter value and
-      console.log(filter);
-    },
     async runQuery() {
       this.reportLoading = true;
       //   build query
@@ -75,6 +71,7 @@ export default {
             let sortedDates = filter.value.sort((a, b) => {
               return a - b;
             });
+            console.log(sortedDates);
 
             queries.push([filter.param, ">=", sortedDates[0]]);
             queries.push([filter.param, "<=", sortedDates[1]]);
@@ -91,13 +88,17 @@ export default {
         .collection(this.reportMeta.collection);
 
       // build and execute query
-      console.log(queries);
       queries.map((q, idx) => {
-        query = ref.where(...q);
+        if (idx === 0) {
+          query = ref.where(...q);
+        } else {
+          query = query.where(...q);
+        }
       });
+      console.log(query);
       query.get().then(snap => {
-        this.reportData = snap.docs.map(doc => doc.data());
-        console.log(this.reportData);
+        let tmpData = snap.docs.map(doc => doc.data());
+        this.reportData = ProcessData(tmpData, this.reportHeaders);
       });
     },
     exportQuery() {}

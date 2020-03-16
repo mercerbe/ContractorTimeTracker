@@ -59,7 +59,7 @@ export default {
           :data="reportData"
           :fields="exportFields"
           :worksheet="`CTC ${reportMeta.title}`"
-          :name="`${reportMeta.title}.xlsx`"
+          :name="`CTC ${reportMeta.title}.xls`"
         >Export</JsonExcel>
       </v-btn>
     </template>

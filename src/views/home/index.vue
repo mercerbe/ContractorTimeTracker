@@ -40,13 +40,13 @@ export default {
     <!-- body -->
     <div class="px-5">
       <v-row class="align-items-center pt-10">
-        <v-col :md="6" :sm="12">
+        <v-col cols="12" md="6" sm="12" xs="12">
           Contract workers have the responsibility to track their own hours, keep track
           of where those hours were delpoyed and the tasks they worked on durning those hours.
           In addition, they have to be able to report those hours back to their employer to make sure they get paid for
           the work they've done! This workflow can be streamlined with Contractor TimeTracker.
         </v-col>
-        <v-col :md="6" :sm="12">
+        <v-col cols="12" md="6" sm="12" xs="12">
           <svg
             id="afc017fa-71c4-4ea6-a0c5-62cd2df9d074"
             data-name="Layer 1"
@@ -161,14 +161,18 @@ export default {
           </svg>
         </v-col>
       </v-row>
-      <div class="px-12 mx-12 pt-10">
+      <div class="pt-10">
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est facilis hic odit dolores praesentium
-          reprehenderit enim quo voluptatem accusamus, nulla beatae error perspiciatis, doloremque omnis consequatur
-          eum sit, suscipit nisi! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus rerum laudantium eum expedita ullam!
-          Alias qui obcaecati velit! Reprehenderit, corrupti earum! Unde, fugiat. Rerum quaerat, id molestiae et voluptatem libero.
+          Contractor TimeTracker allows users to quickly view thier efforts with an easy to understand dashboard where they can also quickly add tasks to tackle throughout the day.
+          Users can track their activity with the timetracker, add notes for the activity, and keep a running list of the clients they want to attribute the work efforts to.
+          We've also given users the ability to track their expenses so they can have a single location to collect expenditures.
+          Lastly, user can quickly run reports on their expenses and activity, export those reports to excel, and hand those off to their employer for review.
         </p>
-        <img src="../../assets/metrics.svg" alt />
+        <v-row class="align-items-center text-center" style="max-height: 500px;">
+          <v-col cols="12" sm="10">
+            <img src="../../assets/metrics.svg" alt />
+          </v-col>
+        </v-row>
       </div>
     </div>
     <div :class="$style.form__div">

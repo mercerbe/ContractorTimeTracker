@@ -4,8 +4,10 @@ import layout from "@/layouts/main.vue";
 import categories from "@/views/timetracker/components/categories-modal.vue";
 import activity from "@/views/timetracker/components/activity-modal";
 import stopwatch from "@/views/timetracker/components/timetracker-stopwatch";
-import { convertTimestamp } from "@/views/timetracker/utils/timestamp-converter";
-import { msToHMS } from "@/views/timetracker/utils/timestamp-converter";
+import {
+  convertTimestamp,
+  msToHMS
+} from "@/views/timetracker/utils/timestamp-converter";
 import { ProcessData } from "@/utils/data-process";
 export default {
   components: { layout, categories, activity, stopwatch },
@@ -155,11 +157,7 @@ export default {
                 <tr style="cursor: pointer;" @click="openActivity(props.item)">
                   <td v-for="(item, idx, i) in props.item" :key="idx">
                     <template v-if="headers[i]">
-                      <template
-                        v-if="headers[i].class === 'timestamp'"
-                      >{{ convertTS(item.seconds) }}</template>
-                      <template v-else-if="headers[i].class === 'duration'">{{ convertMS(item) }}</template>
-                      <template v-else-if="headers[i].class !== 'hidden'">{{ item }}</template>
+                      <template v-if="headers[i].class !== 'hidden'">{{ item }}</template>
                     </template>
                   </td>
                 </tr>
