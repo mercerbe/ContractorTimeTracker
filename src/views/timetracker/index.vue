@@ -32,6 +32,7 @@ export default {
         { text: "Duration", value: "duration", class: "duration" },
         { text: "Client", value: "category", class: "" },
         { text: "Notes", value: "description", class: "" },
+        { text: "Actions", value: "action", sortable: false },
         { text: "", value: "id", class: "hidden" }
       ],
       tableData: [],
@@ -138,37 +139,39 @@ export default {
     <v-container>
       <v-row>
         <!-- table -->
-        <v-col :md="9" :sm="12">
-          <v-card>
-            <v-card-title class="title">Activity Log:</v-card-title>
-            <v-card-subtitle>
-              <v-text-field
-                v-model="search"
-                style="max-width: 275px;"
-                append-icon="mdi-magnify"
-                label="Search"
-                single-line
-                hide-details
-              ></v-text-field>
-            </v-card-subtitle>
-
-            <v-data-table :headers="headers.slice(0,-1)" :items="tableData" :search="search">
-              <template v-slot:item="props">
-                <tr style="cursor: pointer;" @click="openActivity(props.item)">
-                  <td v-for="(item, idx, i) in props.item" :key="idx">
-                    <template v-if="headers[i]">
-                      <template v-if="headers[i].class !== 'hidden'">{{ item }}</template>
-                    </template>
-                  </td>
-                </tr>
-              </template>
-            </v-data-table>
-          </v-card>
+        <v-col cols="12" md="9" sm="12">
+          <v-data-table
+            :headers="headers.slice(0,-1)"
+            :items="tableData"
+            :search="search"
+            sort-by="starttime"
+            class="elevation-1"
+          >
+            <template v-slot:top>
+              <v-toolbar flat>
+                <v-toolbar-title>Activity Log</v-toolbar-title>
+              </v-toolbar>
+              <v-col cols="12" mb="5" sm="12">
+                <v-text-field
+                  v-model="search"
+                  style="max-width: 275px;"
+                  append-icon="mdi-magnify"
+                  label="Search"
+                  color="teal"
+                  single-line
+                  hide-details
+                ></v-text-field>
+              </v-col>
+            </template>
+            <template v-slot:item.action="{ item }">
+              <v-icon small class="mr-2" @click="openActivity(item)">mdi-pencil</v-icon>
+            </template>
+          </v-data-table>
         </v-col>
 
         <!-- clients/categories -->
-        <v-col :md="3" :sm="12">
-          <v-card outlined class="px-3 py-3">
+        <v-col cols="12" md="3" sm="12">
+          <v-card outlined class="px-3 py-3 elevation-1">
             <p class="title pt-1">Clients:</p>
             <!-- categories/clients modal -->
             <categories :selected-category="selectedCategory" @close="selectedCategory = null" />

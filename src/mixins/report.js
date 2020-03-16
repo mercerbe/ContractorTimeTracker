@@ -71,7 +71,7 @@ export default {
             let sortedDates = filter.value.sort((a, b) => {
               return a - b;
             });
-            console.log(sortedDates);
+            
 
             queries.push([filter.param, ">=", sortedDates[0]]);
             queries.push([filter.param, "<=", sortedDates[1]]);

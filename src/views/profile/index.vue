@@ -25,6 +25,7 @@ export default {
       snapshots: [
         {
           collection: "activities",
+          value: "duration",
           query: ["starttime", ">=", weekStart],
           query2: ["starttime", "<=", weekEnd],
           subtitle: "Logged this week"
@@ -42,14 +43,16 @@ export default {
           collection: "activities",
           query: ["starttime", ">=", monthStart],
           query2: ["starttime", "<=", monthEnd],
+          value: "duration",
           name: "Activity this month"
+        },
+        {
+          collection: "expenses",
+          value: "amount",
+          query: ["created_at", ">=", monthStart],
+          query2: ["created_at", "<=", monthEnd],
+          name: "Expenses this month"
         }
-        // {
-        //   collection: "tasks",
-        //   query: ["created_at", ">=", monthStart],
-        //   query2: ["created_at", "<=", monthEnd],
-        //   name: "Tasks this month"
-        // }
       ]
     };
   },
@@ -87,7 +90,7 @@ export default {
     <v-container>
       <!-- snapshot data -->
       <v-row>
-        <v-col v-for="(i,idx) in snapshots" :key="idx" :md="3" :sm="12" :xs="12">
+        <v-col v-for="(i,idx) in snapshots" :key="idx" cols="12" md="3" sm="12" xs="12">
           <snapshot
             :ref="`snapshot${i.collection}`"
             :key="idx"
@@ -101,13 +104,14 @@ export default {
 
       <!-- sparkline charts -->
       <v-row>
-        <v-col v-for="(sparkline, idx) in sparklines" :key="idx" :md="12" :sm="12" :xs="12">
+        <v-col v-for="(sparkline, idx) in sparklines" :key="idx" cols="12" md="6" sm="12" xs="12">
           <sparklines
             :user="user"
             :name="sparkline.name"
             :collection="sparkline.collection"
             :query="sparkline.query"
             :query-compound="sparkline.query2"
+            :query-value="sparkline.value"
           />
         </v-col>
       </v-row>

@@ -19,6 +19,11 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    queryValue: {
+      type: String,
+      required: false,
+      default: ""
     }
   },
   mixins: [Query],

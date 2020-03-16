@@ -194,7 +194,12 @@ export default {
       </v-toolbar>
       <v-row class="pl-2">
         <v-col :cols="5">
-          <v-text-field label="Search" v-model="search" prepend-inner-icon="mdi-magnify"></v-text-field>
+          <v-text-field
+            label="Search"
+            v-model="search"
+            color="teal"
+            prepend-inner-icon="mdi-magnify"
+          ></v-text-field>
         </v-col>
       </v-row>
     </template>

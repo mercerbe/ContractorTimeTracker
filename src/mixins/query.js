@@ -33,12 +33,7 @@ export default {
             .then(snap => {
               snap.docs.forEach(doc => {
                 let item = doc.data();
-                if (item.duration) {
-                  let duration = item.duration;
-                  this.data.push(duration);
-                } else {
-                  this.data.push(1);
-                }
+                this.data.push(Number(item[this.queryValue]));
               });
             });
         }

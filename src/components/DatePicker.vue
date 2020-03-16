@@ -44,7 +44,6 @@ export default {
     },
     datePickerChanged(val) {
       if (val.length === 2) {
-        console.log(val);
         let startDate = new Date(new Date(val[0]).setHours(0, 0, 0, 0));
         let endDate = new Date(new Date(val[1]).setHours(0, 0, 0, 0));
         this.filter.value = [startDate, endDate];
