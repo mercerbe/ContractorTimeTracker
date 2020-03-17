@@ -86,31 +86,28 @@ export default {
     <v-card>
       <v-card-title class="headline grey lighten-2" primary-title>
         <div class="flex flex-row">Activity</div>
-        <v-btn text @click="close"><v-icon>mdi-window-close</v-icon> </v-btn>
+        <v-btn text @click="close">
+          <v-icon>mdi-window-close</v-icon>
+        </v-btn>
       </v-card-title>
 
       <v-card-text>
         <v-select
           v-model="activity.category"
           :items="categories"
+          color="teal"
           item-text="name"
           item-value="name"
           label="Client"
         />
-        <v-text-field
-          label="Activity Description"
-          v-model="activity.description"
-        />
-        <v-text-field
-          :value="activity.starttime"
-          label="Start"
-          :disabled="true"
-        />
-        <v-text-field :disabled="true" v-model="activity.endtime" label="End" />
+        <v-text-field label="Activity Description" v-model="activity.description" color="teal" />
+        <v-text-field :value="activity.starttime" label="Start" :disabled="true" color="teal" />
+        <v-text-field :disabled="true" v-model="activity.endtime" label="End" color="teal" />
         <v-text-field
           label="Duration"
           :disabled="true"
           :value="convertMS(activity.duration)"
+          color="teal"
         />
       </v-card-text>
 
@@ -118,12 +115,8 @@ export default {
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn v-if="activity.id" color="" text @click="updateActivity">
-          Update
-        </v-btn>
-        <v-btn v-else color="" text @click="addActivity">
-          Add
-        </v-btn>
+        <v-btn v-if="activity.id" color text @click="updateActivity">Update</v-btn>
+        <v-btn v-else color text @click="addActivity">Add</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

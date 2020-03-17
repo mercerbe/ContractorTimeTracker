@@ -17,6 +17,7 @@ export default {
       activities: [],
       categories: [],
       selectedCategory: null,
+      activityCategory: null,
       // log activity
       activity: {
         category: "",
@@ -85,6 +86,7 @@ export default {
     // add based on stopwatch
     addNewActivity(start, end, diff) {
       this.selectedActivity = {
+        category: this.activityCategory,
         starttime: start,
         endtime: end,
         duration: diff
@@ -126,9 +128,6 @@ export default {
       <p class="display-1">Time Tracker</p>
     </v-col>
 
-    <!-- stopwatch component -->
-    <stopwatch @timer_stopped="addNewActivity" />
-
     <!-- activity modal -->
     <activity
       :selected-activity="selectedActivity"
@@ -137,6 +136,28 @@ export default {
     />
 
     <v-container>
+      <!-- stopwatch component -->
+      <v-card class="elevation-1">
+        <v-card-subtitle>Start New Activity</v-card-subtitle>
+        <v-autocomplete
+          v-model="activityCategory"
+          :items="categories"
+          label="Client"
+          item-text="name"
+          item-value="name"
+          placeholder="Select a client..."
+          color="teal"
+          clearable
+          class="px-5"
+        >
+          <template v-slot:no-data>
+            <div class="text-center">
+              <v-btn color="teal" dark @click="$refs.CategoryModal.openDialog()">Add Client</v-btn>
+            </div>
+          </template>
+        </v-autocomplete>
+        <stopwatch v-if="activityCategory" @timer_stopped="addNewActivity" />
+      </v-card>
       <v-row>
         <!-- table -->
         <v-col cols="12" md="9" sm="12">
@@ -174,7 +195,11 @@ export default {
           <v-card outlined class="px-3 py-3 elevation-1">
             <p class="title pt-1">Clients:</p>
             <!-- categories/clients modal -->
-            <categories :selected-category="selectedCategory" @close="selectedCategory = null" />
+            <categories
+              :selected-category="selectedCategory"
+              ref="CategoryModal"
+              @close="selectedCategory = null"
+            />
             <v-list>
               <v-list-item-group>
                 <v-list-item

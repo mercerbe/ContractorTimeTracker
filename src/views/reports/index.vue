@@ -7,7 +7,7 @@ export default {
     return {
       tab: null,
       tabs: [
-        { title: "Activity", json: "activities" },
+        { title: "Time", json: "activities" },
         { title: "Expenses", json: "expenses" }
       ]
     };

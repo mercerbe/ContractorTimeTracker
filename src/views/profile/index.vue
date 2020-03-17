@@ -117,10 +117,10 @@ export default {
       </v-row>
       <!-- profile data and todo list -->
       <v-row>
-        <v-col :md="6" :sm="12">
+        <!-- <v-col :md="6" :sm="12">
           <information v-if="user" :user="user" />
-        </v-col>
-        <v-col :md="6" :sm="12">
+        </v-col>-->
+        <v-col :md="12" :sm="12">
           <todos @status_updated="$refs.snapshottodos[0].runQuery()" />
         </v-col>
       </v-row>

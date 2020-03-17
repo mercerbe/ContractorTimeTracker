@@ -50,7 +50,7 @@ export default {
         @filter_changed="$emit('filter_changed')"
       />
       <!-- query -->
-      <v-btn v-if="filter.type === 'button'" :key="idx" dark @click="$emit('search')">Search</v-btn>
+      <v-btn v-if="filter.type === 'button'" :key="idx" dark @click="$emit('search')">Run</v-btn>
       <!-- export -->
       <v-btn v-if="filter.type === 'export'" color="green" dark :key="idx" @click="$emit('export')">
         <JsonExcel
@@ -60,7 +60,7 @@ export default {
           :fields="exportFields"
           :worksheet="`CTC ${reportMeta.title}`"
           :name="`CTC ${reportMeta.title}.xls`"
-        >Export</JsonExcel>
+        >Export as XLS</JsonExcel>
       </v-btn>
     </template>
   </div>

@@ -76,7 +76,7 @@ export default {
       <p class="title">Your Tasks</p>
       <div class="d-flex align-center">
         <div class="flex-grow-1">
-          <v-text-field id="new_todo" label class="validate" v-model="todo.title" />
+          <v-text-field id="new_todo" label class="validate" v-model="todo.title" color="teal" />
         </div>
         <div class="flex-shrink-1 pl-2">
           <v-btn color="teal" dark @click="addTodo">Add</v-btn>

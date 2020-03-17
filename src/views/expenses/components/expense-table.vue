@@ -158,19 +158,20 @@ export default {
               <v-container>
                 <v-row>
                   <v-col cols="12" sm="6" md="6">
-                    <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
+                    <v-text-field v-model="editedItem.name" label="Name" color="teal"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
-                    <v-text-field v-model="editedItem.type" label="Type"></v-text-field>
+                    <v-text-field v-model="editedItem.type" label="Type" color="teal"></v-text-field>
                   </v-col>
                   <v-col cols="12">
-                    <v-textarea v-model="editedItem.description" label="Description"></v-textarea>
+                    <v-textarea v-model="editedItem.description" label="Description" color="teal"></v-textarea>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
                       v-model="editedItem.amount"
                       prepend-inner-icon="mdi-currency-usd"
                       label="Amount"
+                      color="teal"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
@@ -178,6 +179,7 @@ export default {
                       :value="editedItem.created_at.seconds ? convertTS(editedItem.created_at.seconds) : editedItem.created_at"
                       label="Created At"
                       :disabled="true"
+                      color="teal"
                     ></v-text-field>
                   </v-col>
                 </v-row>

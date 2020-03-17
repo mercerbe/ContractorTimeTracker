@@ -32,7 +32,7 @@ export default {
   <layout>
     <!-- header -->
     <div class="d-flex justify-center">
-      <v-card class="text-center px-5 py-2 mt-5" width="600">
+      <v-card class="text-center px-5 py-2 mt-5" max-width="600">
         <p class="display-3">Contractor TimeTracker</p>
         <p class="subtitle-1">Track your tasks, time, expenses and generate reports</p>
       </v-card>
@@ -42,7 +42,7 @@ export default {
       <v-row class="align-items-center pt-10">
         <v-col cols="12" md="6" sm="12" xs="12">
           Contract workers have the responsibility to track their own hours, keep track
-          of where those hours were delpoyed and the tasks they worked on durning those hours.
+          of where those hours were delpoyed and the tasks they worked on during those hours.
           In addition, they have to be able to report those hours back to their employer to make sure they get paid for
           the work they've done! This workflow can be streamlined with Contractor TimeTracker.
         </v-col>
@@ -179,7 +179,7 @@ export default {
       <p
         class="title px-5 py-2"
         style="background-color: #363636; border-top-right-radius: 10px;border-top-left-radius: 10px;"
-      >Questions or Concerns? Shoot us a message:</p>
+      >Questions or concerns? Shoot us a message!</p>
       <v-form
         v-model="valid"
         class="px-12 pb-5"

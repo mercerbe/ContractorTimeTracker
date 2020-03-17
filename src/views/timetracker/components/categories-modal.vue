@@ -25,6 +25,9 @@ export default {
     };
   },
   methods: {
+    openDialog() {
+      this.dialog = true;
+    },
     addCategory() {
       firebase
         .firestore()
@@ -76,7 +79,7 @@ export default {
         </v-card-title>
 
         <v-card-text>
-          <v-text-field label="Client Name" v-model="category.name" />
+          <v-text-field label="Client Name" v-model="category.name" color="teal" />
         </v-card-text>
 
         <v-divider></v-divider>
