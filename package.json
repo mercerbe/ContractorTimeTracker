@@ -20,7 +20,7 @@
     "vue-json-excel": "^0.2.98",
     "vue-router": "^3.0.1",
     "vuesax": "^3.11.13",
-    "vuetify": "^2.2.12"
+    "vuetify": "^2.6.10"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
